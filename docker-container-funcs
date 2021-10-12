@@ -47,6 +47,14 @@ function removeContainer() {
 	printf "%s has been removed!\n" "${containerId}"
 }
 
+function killContainer() {
+  showAll
+  read -p "select [container[id|tag]]: " containerId 
+  [ -z "$containerId" ] && showError
+  printf "docker container kill [${containerId}]\n"
+  docker container kill "${containerId}"
+}
+
 function showLogs() {
 	read -p "Container name: " name
 	[ -z "$name" ] && showError
